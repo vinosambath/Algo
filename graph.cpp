@@ -1,5 +1,4 @@
 #include "graph.h"
-#include <iostream>
 
 Graph::Graph(int v, int e) {
   V = v;
@@ -13,8 +12,12 @@ void Graph::addEdge(int u, int v, int w) {
 void Graph::printGraph() {
   vector<pair<int,pair<int,int> > >::iterator it;
   for(it = edges.begin(); it != edges.end(); it++) {
-    cout<<it->second.first<<" "<<it->second.second<<" "<<it->first<<endl;
+    cout<<it->first<<" "<<it->second.first<<" "<<it->second.second<<endl;
   }
+}
+
+void Graph::sortEdges() {
+  sort(edges.begin(), edges.end());
 }
 
 // int main() {

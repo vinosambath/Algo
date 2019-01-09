@@ -9,4 +9,5 @@ public:
   Graph(int V, int E);
   void addEdge(int u, int v, int w);
   void printGraph();
+  void sortEdges();
 };

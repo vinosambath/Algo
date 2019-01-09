@@ -24,7 +24,6 @@ UnionFind::UnionFind(int N) {
 }
 
 int UnionFind::find(int x) {
-  cout<<"Find"<<x<<endl;
   if(parent[x] != x) {
     parent[x] = find(parent[x]);
   }
