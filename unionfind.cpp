@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include "unionfind.h"
 using namespace std;
 
 /*
@@ -12,48 +13,41 @@ The idea is to flatten the tree when find() is called
 
 */
 
-struct Edge {
-  int u, v, weight;
-};
+UnionFind::UnionFind(int N) {
+  cnt = N;
+  parent = new int[N];
+  rank = new int[N];
+  for(int i = 0; i < N; i++) {
+    parent[i] = i;
+    rank[i] = 1;
+  }
+}
 
-class UnionFind {
-public:
-  int *parent, cnt, *rank;
-  UnionFind(int N) {
-    cnt = N;
-    parent = new int[N];
-    rank = new int[N];
-    for(int i = 0; i < N; i++) {
-      parent[i] = i;
-      rank[i] = 1;
-    }
+int UnionFind::find(int x) {
+  cout<<"Find"<<x<<endl;
+  if(parent[x] != x) {
+    parent[x] = find(parent[x]);
   }
-  int find(int x) {
-    cout<<"Find"<<x<<endl;
-    if(parent[x] != x) {
-      parent[x] = find(parent[x]);
-    }
-    return parent[x];
-  }
+  return parent[x];
+}
 
-  void merge(int x, int y) {
-    int xRoot = find(x);
-    int yRoot = find(y);
-    if(xRoot == yRoot) return;
-    if(rank[xRoot] < rank[yRoot]) {
-      parent[xRoot] = yRoot;
-    } else if(rank[xRoot] > rank[yRoot]){
-      parent[yRoot] = xRoot;
-    } else {
-      parent[yRoot] = xRoot;
-      rank[yRoot]++;
-    }
+void UnionFind::merge(int x, int y) {
+  int xRoot = find(x);
+  int yRoot = find(y);
+  if(xRoot == yRoot) return;
+  if(rank[xRoot] < rank[yRoot]) {
+    parent[xRoot] = yRoot;
+  } else if(rank[xRoot] > rank[yRoot]){
+    parent[yRoot] = xRoot;
+  } else {
+    parent[yRoot] = xRoot;
+    rank[yRoot]++;
   }
+}
 
-  bool connected(int x, int y) {
-    return parent[x] == parent[y];
-  }
-};
+bool UnionFind::connected(int x, int y) {
+  return parent[x] == parent[y];
+}
 
 // int main() {
 //   UnionFind uf(10);
