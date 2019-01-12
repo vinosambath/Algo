@@ -37,7 +37,7 @@ public:
 
 
 int main() {
-  Graph g(7, 7);
+  Graph g(8, 7);
   // given as u, v, w
   g.addEdge(1, 2, 1);
   g.addEdge(1, 5, 1);
