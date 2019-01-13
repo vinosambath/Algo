@@ -1,9 +1,40 @@
 #include "../graph.h"
+#include <queue>
 
 class Djikstra {
 public:
+  priority_queue<pair<int, int> > pq;
+  int dist[1000];
   Djikstra() {
-    vector<int> dist(1000, 123534343);
+    for(int i = 0; i < 500; i++) {
+      dist[i] = 23423232;
+    }
+  }
+
+  void shortestDistance(Graph g, int src) {
+    dist[src] = 0;
+    vector<graphpair>::iterator it;
+
+    pq.push(make_pair(0, src));
+    while(!pq.empty()) {
+      int u = pq.top().second;
+      pq.pop();
+
+      for(it = g.adj[u].begin(); it != g.adj[u].end(); it++) {
+        int v = it -> first;
+        int w = it -> second;
+        if (dist[v] > dist[u] + w) {
+          dist[v] = dist[u] + w;
+          pq.push(make_pair(dist[v], v));
+        }
+      }
+    }
+  }
+
+  void printShortestDistance(Graph g) {
+    for(int i = 0; i < g.V; i++) {
+      cout<<i<< " - "<<dist[i]<<endl;
+    }
   }
 };
 
@@ -22,6 +53,6 @@ int main() {
   g.printAdjListRepresentation();
 
   Djikstra d;
-  //d.FindShortestDistance();
-  //d.printShortestDistance();
+  d.shortestDistance(g, 1);
+  d.printShortestDistance(g);
 }
