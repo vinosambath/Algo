@@ -7,17 +7,29 @@ class PrimsLazy {
 public:
   vector<pair<int, int> >MST;
   int MSTWeight = 0;
-  bool visited[1000];
+  bool inMST[1000];
   PrimsLazy() {
     MSTWeight = 0;
-    for(int i = 0; i < 1000; i++) visited[i] = false;
+    for(int i = 0; i < 1000; i++) inMST[i] = false;
   }
 
   // TODO to pass g in constructor and fix visited static allocation
-  void FindMST(Graph g) {
-    priority_queue<int> q;
-    visited[1] = true;
-    q.
+  void FindMST(Graph g, int src) {
+    priority_queue<pair<int, int> > pq;
+    vector<int> key(g.V, 10343434);
+    pq.push(make_pair(0, src));
+    key[src] = 0;
+
+    while(!pq.empty()) {
+      int u = pq.top().second;
+      pq.pop();
+
+      vector< pair<int, int> >::iterator it;
+      for(it = g.adj[u].being(); it != g.adj[u].end(); it++) {
+
+      }
+    }
+
   }
 };
 

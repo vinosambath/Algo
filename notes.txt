@@ -1,0 +1,17 @@
+Kruskal
+Take the minimum weight edge, if it doesn't form a cycle, attach it to the graph.
+
+Djikstra
+Take the minimum cost vertex from source and find the shortest path to the adjacent vertices.
+
+Prims
+Take the minium cost vertex in the tree and add it to the graph.
+
+Ford Forgusen
+Max Flow
+Find an augumented path from source S to sink (Target) T. Find the minimum weight edge.
+Decrement weight in the path by minimum weight (residual weight of edge).
+Continue until there is a path
+
+Min Cut
+After residual edges are updated, do a dfs, edge which is not reachable from source and neighbour is reachable from source, is in min cut

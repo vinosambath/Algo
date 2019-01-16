@@ -4,9 +4,11 @@ Graph::Graph(int v, int e) {
   V = v;
   E = e;
   adj = new vector<graphpair>[V];
+  mrGraph = vector<vector<int> >(v, vector<int>(v));
 }
 
 void Graph::addEdge(int u, int v, int w) {
+  mrGraph[u][v] = w;
   adj[u].push_back(make_pair(v, w));
   edges.push_back(make_pair(w, make_pair(u, v)));
 }
@@ -27,6 +29,12 @@ void Graph::printAdjListRepresentation() {
   }
 }
 
+void Graph::printMatrixRepresentation() {
+  for(int i = 0; i < V; i++) {
+    cout<<mrGraph[i][i];
+  }
+}
+
 void Graph::sortEdges() {
   sort(edges.begin(), edges.end());
 }
@@ -42,4 +50,5 @@ void Graph::sortEdges() {
 //   g.addEdge(2, 4, 1);
 //   g.printGraph();
 //   g.printAdjListRepresentation();
+//   g.printMatrixRepresentation();
 // }
