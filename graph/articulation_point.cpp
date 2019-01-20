@@ -17,11 +17,17 @@ void APUtil(Graph g, int node, vector<bool> &visited, vector<bool> &AP, vector<i
 
       low[node] = min(low[node], low[it->first]);
 
-      if(parent[node] == -1 && children > 0)
+      if(parent[node] == -1 && children > 0) {
+        cout<<node<<" is an articulation point"<<endl;
         AP[node] = true;
+      }
 
       if(parent[node] != -1 && low[it->first] > disc[node])
+      {
+        cout<<node<<" is an articulation point"<<endl;
+        cout<<"The edge from "<<node<<" to "<<it->first<<" is a bridge in the given graph"<<endl;
         AP[node] = true;
+      }
 
     } else if(it->first != parent[node]) {
       low[node] = min(low[node], disc[it->first]);
@@ -50,19 +56,17 @@ int main() {
       APUtil(g, 0, visited, AP, parent, disc, low);
   }
 
-  cout<<"Disc and low values"<<endl;
-  for(int i = 0; i < g.V; i++) {
-    cout<<i<<" "<<disc[i]<<" "<<low[i]<<endl;
-  }
-  cout<<endl;
+  // cout<<"Disc and low values"<<endl;
+  // for(int i = 0; i < g.V; i++) {
+  //   cout<<i<<" "<<disc[i]<<" "<<low[i]<<endl;
+  // }
+  // cout<<endl;
 
-cout<<"Articulation points are "<<endl;
-  for(int i = 0; i < g.V; i++) {
-    if(AP[i]) {
-      cout<<i<<endl;
-    }
-  }
-  cout<<endl;
-
-
+  // cout<<"Articulation points are "<<endl;
+  //   for(int i = 0; i < g.V; i++) {
+  //     if(AP[i]) {
+  //       cout<<i<<endl;
+  //     }
+  //   }
+  //   cout<<endl;s
 }
