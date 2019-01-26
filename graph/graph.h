@@ -13,10 +13,13 @@ public:
   // to avoid key stroke mr - matrix representation
   vector<vector<int> > mrGraph;
   vector<pair<int,pair<int,int> > > edges;
+  // to save keystroke rGraph - ReversedGraph
+  vector<graphpair> *rGraph;
   Graph(int V, int E);
   void addEdge(int u, int v, int w);
   void printGraph();
   void printAdjListRepresentation();
   void printMatrixRepresentation();
+  void reverseGraph();
   void sortEdges();
 };

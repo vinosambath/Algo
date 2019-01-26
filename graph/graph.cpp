@@ -5,12 +5,23 @@ Graph::Graph(int v, int e) {
   E = e;
   adj = new vector<graphpair>[V];
   mrGraph = vector<vector<int> >(v, vector<int>(v));
+  rGraph = new vector<graphpair>[V];
 }
 
 void Graph::addEdge(int u, int v, int w) {
   mrGraph[u][v] = w;
   adj[u].push_back(make_pair(v, w));
   edges.push_back(make_pair(w, make_pair(u, v)));
+}
+
+// Reverse the adj list rep
+void Graph::reverseGraph() {
+  vector<graphpair>::iterator it;
+  for(int i = 0; i < V; i++) {
+    for(it = adj[i].begin(); it != adj[i].end(); it++) {
+      rGraph[it->first].push_back(make_pair(i, it->second));
+    }
+  }
 }
 
 void Graph::printGraph() {
